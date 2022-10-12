@@ -12,5 +12,5 @@ func main() {
 	if err := examples.Client.Do(req, resp); err != nil {
 		panic(err)
 	}
-	log.Println(req, resp)
+	log.Println(req, resp.(*account.GetBalanceResponse))
 }

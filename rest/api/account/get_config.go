@@ -6,7 +6,7 @@ func NewGetConfig() (api.IRequest, api.IResponse) {
 	return &api.Request{
 		Path:   "/api/v5/account/config",
 		Method: api.MethodGet,
-	}, &GetBalanceResponse{}
+	}, &GetConfigResponse{}
 }
 
 type GetConfigResponse struct {
