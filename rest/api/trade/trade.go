@@ -1,6 +1,12 @@
 package trade
 
 const (
+	InstTypeSPOT    = "SPOT"
+	InstTypeMARGIN  = "MARGIN"
+	InstTypeSWAP    = "SWAP"
+	InstTypeFUTURES = "FUTURES"
+	InstTypeOPTION  = "OPTION"
+
 	TdModeIsolated = "isolated"
 	TdModeCross    = "cross"
 	TdModeCash     = "cash"
