@@ -16,9 +16,9 @@ all examples are in the folder examples
 package main
 
 import (
-	"go-okx/rest"
-	"go-okx/rest/api/account"
-	"log"
+    "go-okx/rest"
+    "go-okx/rest/api/account"
+    "log"
 )
 
 func main() {
