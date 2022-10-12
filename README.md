@@ -23,11 +23,11 @@ import (
 
 func main() {
     client = rest.New("", "your api key", "you key", "your passphrase", false, nil)
-	param := &account.GetBalanceParam{}
-	req, resp := account.NewGetBalance(param)
-	if err := client.Do(req, resp); err != nil {
-		panic(err)
-	}
-	log.Print(req, resp.(*account.GetBalanceResponse))
+    param := &account.GetBalanceParam{}
+    req, resp := account.NewGetBalance(param)
+    if err := client.Do(req, resp); err != nil {
+        panic(err)
+    }
+    log.Print(req, resp.(*account.GetBalanceResponse))
 }
 ```
