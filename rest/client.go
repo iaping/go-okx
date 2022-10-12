@@ -55,7 +55,7 @@ func (c *Client) Do(req api.IRequest, resp api.IResponse) error {
 		return err
 	}
 	if !resp.IsOk() {
-		return fmt.Errorf("response code: %s, message: %s", resp.GetCode(), resp.GetMessage())
+		return fmt.Errorf("code: %s, message: %s", resp.GetCode(), resp.GetMessage())
 	}
 
 	return nil
