@@ -8,7 +8,7 @@ import (
 
 func main() {
 	param := &account.GetBalanceParam{}
-	req, resp := account.NewBalance(param)
+	req, resp := account.NewGetBalance(param)
 	if err := examples.Client.Do(req, resp); err != nil {
 		panic(err)
 	}

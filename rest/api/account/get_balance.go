@@ -2,19 +2,19 @@ package account
 
 import "go-okx/rest/api"
 
-func NewBalance(param *GetBalanceParam) (api.IRequest, api.IResponse) {
+func NewGetBalance(param *GetBalanceParam) (api.IRequest, api.IResponse) {
 	return &api.Request{
 		Path:   "/api/v5/account/balance",
 		Method: api.MethodGet,
 		Param:  param,
-	}, &BalanceResponse{}
+	}, &GetBalanceResponse{}
 }
 
 type GetBalanceParam struct {
 	Ccy string `url:"ccy,omitempty"`
 }
 
-type BalanceResponse struct {
+type GetBalanceResponse struct {
 	api.Response
 	Data []struct {
 		AdjEq       string  `json:"adjEq,omitempty"`
