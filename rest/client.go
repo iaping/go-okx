@@ -3,8 +3,9 @@ package rest
 import (
 	"encoding/json"
 	"fmt"
-	"go-okx/rest/api"
 	"time"
+
+	"github.com/iaping/go-okx/rest/api"
 
 	"github.com/google/go-querystring/query"
 	"github.com/valyala/fasthttp"

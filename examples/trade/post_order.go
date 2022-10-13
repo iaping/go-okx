@@ -1,9 +1,10 @@
 package main
 
 import (
-	"go-okx/examples"
-	"go-okx/rest/api/trade"
 	"log"
+
+	"github.com/iaping/go-okx/examples"
+	"github.com/iaping/go-okx/rest/api/trade"
 )
 
 func main() {

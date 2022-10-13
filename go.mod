@@ -1,4 +1,4 @@
-module go-okx
+module github.com/iaping/go-okx
 
 go 1.19
 
