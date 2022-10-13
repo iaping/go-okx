@@ -1,6 +1,6 @@
 module github.com/iaping/go-okx
 
-go 1.19
+go 1.17
 
 require (
 	github.com/google/go-querystring v1.1.0
