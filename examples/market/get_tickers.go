@@ -4,13 +4,13 @@ import (
 	"log"
 
 	"github.com/iaping/go-okx/examples"
+	"github.com/iaping/go-okx/rest/api"
 	"github.com/iaping/go-okx/rest/api/market"
-	"github.com/iaping/go-okx/rest/api/trade"
 )
 
 func main() {
 	param := &market.GetTickersParam{
-		InstType: trade.InstTypeSPOT,
+		InstType: api.InstTypeSPOT,
 	}
 	req, resp := market.NewGetTickers(param)
 	if err := examples.Client.Do(req, resp); err != nil {

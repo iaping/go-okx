@@ -1,4 +1,4 @@
-package trade
+package api
 
 const (
 	InstTypeSPOT    = "SPOT"

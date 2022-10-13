@@ -4,15 +4,16 @@ import (
 	"log"
 
 	"github.com/iaping/go-okx/examples"
+	"github.com/iaping/go-okx/rest/api"
 	"github.com/iaping/go-okx/rest/api/trade"
 )
 
 func main() {
 	param := &trade.PostOrderParam{
 		InstId:  "OKB-USDT",
-		TdMode:  trade.TdModeCash,
-		Side:    trade.SideBuy,
-		OrdType: trade.OrdTypeLimit,
+		TdMode:  api.TdModeCash,
+		Side:    api.SideBuy,
+		OrdType: api.OrdTypeLimit,
 		Sz:      "9",
 		Px:      "5",
 	}
