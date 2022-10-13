@@ -16,18 +16,19 @@ all examples are in the folder examples
 package main
 
 import (
-    "go-okx/rest"
-    "go-okx/rest/api/account"
-    "log"
+	"log"
+
+	"github.com/iaping/go-okx/rest"
+	"github.com/iaping/go-okx/rest/api/account"
 )
 
 func main() {
-    client = rest.New("", "your api key", "you key", "your passphrase", false, nil)
-    param := &account.GetBalanceParam{}
-    req, resp := account.NewGetBalance(param)
-    if err := client.Do(req, resp); err != nil {
-        panic(err)
-    }
-    log.Print(req, resp.(*account.GetBalanceResponse))
+	client := rest.New("", "your apikey", "your key", "your passphrase", false, nil)
+	param := &account.GetBalanceParam{}
+	req, resp := account.NewGetBalance(param)
+	if err := client.Do(req, resp); err != nil {
+		panic(err)
+	}
+	log.Println(req, resp.(*account.GetBalanceResponse))
 }
 ```
