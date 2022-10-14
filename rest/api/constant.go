@@ -23,4 +23,9 @@ const (
 	OrdTypeFok             = "fok"
 	OrdTypeIoc             = "ioc"
 	OrdTypeOptimalLimitIoc = "optimal_limit_ioc"
+
+	OrdStateCanceled        = "canceled"
+	OrdStateLive            = "live"
+	OrdStatePartiallyFilled = "partially_filled"
+	OrdStateFilled          = "filled"
 )
