@@ -27,11 +27,13 @@ type PostOrderParam struct {
 
 type PostOrderResponse struct {
 	api.Response
-	Data []struct {
-		OrdId   string `json:"ordId"`
-		ClOrdId string `json:"clOrdId"`
-		Tag     string `json:"tag"`
-		SCode   string `json:"sCode"`
-		SMsg    string `json:"sMsg"`
-	} `json:"data"`
+	Data []OrderCreate `json:"data"`
+}
+
+type OrderCreate struct {
+	OrdId   string `json:"ordId"`
+	ClOrdId string `json:"clOrdId"`
+	Tag     string `json:"tag"`
+	SCode   string `json:"sCode"`
+	SMsg    string `json:"sMsg"`
 }

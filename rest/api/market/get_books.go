@@ -17,9 +17,11 @@ type GetBooksParam struct {
 
 type GetBooksResponse struct {
 	api.Response
-	Data []struct {
-		Asks [][]string `json:"asks"`
-		Bids [][]string `json:"bids"`
-		Ts   int64      `json:"ts,string"`
-	} `json:"data"`
+	Data []Books `json:"data"`
+}
+
+type Books struct {
+	Asks [][]string `json:"asks"`
+	Bids [][]string `json:"bids"`
+	Ts   int64      `json:"ts,string"`
 }

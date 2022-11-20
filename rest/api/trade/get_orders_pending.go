@@ -25,5 +25,5 @@ type GetOrdersPendingParam struct {
 
 type GetOrdersPendingResponse struct {
 	api.Response
-	Data []OrderDetail `json:"data"`
+	Data []Order `json:"data"`
 }
