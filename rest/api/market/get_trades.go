@@ -17,10 +17,10 @@ type GetTradesParam struct {
 
 type GetTradesResponse struct {
 	api.Response
-	Data []Trades `json:"data"`
+	Data []Trade `json:"data"`
 }
 
-type Trades struct {
+type Trade struct {
 	InstId  string `json:"instId"`
 	TradeId string `json:"tradeId"`
 	Px      string `json:"px"`

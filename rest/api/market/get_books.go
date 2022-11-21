@@ -17,10 +17,10 @@ type GetBooksParam struct {
 
 type GetBooksResponse struct {
 	api.Response
-	Data []Books `json:"data"`
+	Data []Book `json:"data"`
 }
 
-type Books struct {
+type Book struct {
 	Asks [][]string `json:"asks"`
 	Bids [][]string `json:"bids"`
 	Ts   int64      `json:"ts,string"`

@@ -21,10 +21,10 @@ type GetBillsParam struct {
 
 type GetBillsResponse struct {
 	api.Response
-	Data []Bills `json:"data"`
+	Data []Bill `json:"data"`
 }
 
-type Bills struct {
+type Bill struct {
 	BillId  string `json:"billId"`
 	Ccy     string `json:"ccy"`
 	Amt     string `json:"amt"`

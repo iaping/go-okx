@@ -18,10 +18,10 @@ type GetPositionsParam struct {
 
 type GetPositionsResponse struct {
 	api.Response
-	Data []Positions `json:"data"`
+	Data []Position `json:"data"`
 }
 
-type Positions struct {
+type Position struct {
 	InstType    string `json:"instType"`
 	MgnMode     string `json:"mgnMode"`
 	PosId       string `json:"posId"`

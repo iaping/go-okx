@@ -16,10 +16,10 @@ type GetCurrenciesParam struct {
 
 type GetCurrenciesResponse struct {
 	api.Response
-	Data []Currencies `json:"data"`
+	Data []Currency `json:"data"`
 }
 
-type Currencies struct {
+type Currency struct {
 	Ccy                  string `json:"ccy"`
 	Name                 string `json:"name"`
 	LogoLink             string `json:"logoLink"`

@@ -20,19 +20,19 @@ type GetBalanceResponse struct {
 }
 
 type Balance struct {
-	AdjEq       string           `json:"adjEq"`
-	Imr         string           `json:"imr"`
-	IsoEq       string           `json:"isoEq"`
-	MgnRatio    string           `json:"mgnRatio"`
-	Mmr         string           `json:"mmr"`
-	NotionalUsd string           `json:"notionalUsd"`
-	OrdFroz     string           `json:"ordFroz"`
-	TotalEq     string           `json:"totalEq"`
-	UTime       int64            `json:"uTime,string"`
-	Details     []BalanceDetails `json:"details"`
+	AdjEq       string          `json:"adjEq"`
+	Imr         string          `json:"imr"`
+	IsoEq       string          `json:"isoEq"`
+	MgnRatio    string          `json:"mgnRatio"`
+	Mmr         string          `json:"mmr"`
+	NotionalUsd string          `json:"notionalUsd"`
+	OrdFroz     string          `json:"ordFroz"`
+	TotalEq     string          `json:"totalEq"`
+	UTime       int64           `json:"uTime,string"`
+	Details     []BalanceDetail `json:"details"`
 }
 
-type BalanceDetails struct {
+type BalanceDetail struct {
 	AvailBal      string `json:"availBal"`
 	AvailEq       string `json:"availEq"`
 	CashBal       string `json:"cashBal"`

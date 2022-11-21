@@ -20,10 +20,10 @@ type GetListParam struct {
 
 type GetListResponse struct {
 	api.Response
-	Data []List `json:"data"`
+	Data []Account `json:"data"`
 }
 
-type List struct {
+type Account struct {
 	Type    string `json:"type"`
 	Enable  bool   `json:"enable"`
 	SubAcct string `json:"subAcct"`

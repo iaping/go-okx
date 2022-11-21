@@ -16,10 +16,10 @@ type GetBalancesParam struct {
 
 type GetBalancesResponse struct {
 	api.Response
-	Data []Balances `json:"data"`
+	Data []Balance `json:"data"`
 }
 
-type Balances struct {
+type Balance struct {
 	Ccy       string `json:"ccy"`
 	Bal       string `json:"bal"`
 	FrozenBal string `json:"frozenBal"`

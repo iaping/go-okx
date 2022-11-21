@@ -16,9 +16,9 @@ type GetEntrustSubaccountListParam struct {
 
 type GetEntrustSubaccountListResponse struct {
 	api.Response
-	Data []EntrustSubaccountList `json:"data"`
+	Data []EntrustSubaccount `json:"data"`
 }
 
-type EntrustSubaccountList struct {
+type EntrustSubaccount struct {
 	SubAcct string `json:"subAcct"`
 }
