@@ -11,7 +11,7 @@ import (
 )
 
 var (
-	defaultFastHttpClient = &fasthttp.Client{
+	DefaultFastHttpClient = &fasthttp.Client{
 		Name:                "go-okx",
 		MaxConnsPerHost:     16,
 		MaxIdleConnDuration: 20 * time.Second,
@@ -32,7 +32,7 @@ func New(host, key, secretKey, passphrase string, simulated bool, c *fasthttp.Cl
 		host = "https://www.okx.com"
 	}
 	if c == nil {
-		c = defaultFastHttpClient
+		c = DefaultFastHttpClient
 	}
 	return &Client{
 		Host:       host,
