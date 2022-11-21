@@ -31,4 +31,7 @@ const (
 
 	PosModeLongShort = "long_short_mode"
 	PosModeNet       = "net_mode"
+
+	MgnModeIsolated = "isolated"
+	MgnModeCross    = "cross"
 )
