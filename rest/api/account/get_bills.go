@@ -17,9 +17,9 @@ type GetBillsParam struct {
 	CtType   string `url:"ctType,omitempty"`
 	Type     string `url:"type,omitempty"`
 	SubType  string `url:"subType,omitempty"`
-	After    string `url:"after,omitempty"`
-	Before   string `url:"before,omitempty"`
-	Limit    string `url:"limit,omitempty"`
+	After    int64  `url:"after,omitempty"`
+	Before   int64  `url:"before,omitempty"`
+	Limit    int    `url:"limit,omitempty"`
 }
 
 type GetBillsResponse struct {
