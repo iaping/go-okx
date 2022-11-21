@@ -28,4 +28,7 @@ const (
 	OrdStateLive            = "live"
 	OrdStatePartiallyFilled = "partially_filled"
 	OrdStateFilled          = "filled"
+
+	PosModeLongShort = "long_short_mode"
+	PosModeNet       = "net_mode"
 )
