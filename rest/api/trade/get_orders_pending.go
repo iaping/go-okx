@@ -18,9 +18,9 @@ type GetOrdersPendingParam struct {
 	InstId   string `url:"instId,omitempty"`
 	OrdType  string `url:"ordType,omitempty"`
 	State    string `url:"state,omitempty"`
-	After    string `url:"after,omitempty"`
-	Before   string `url:"before,omitempty"`
-	Limit    string `url:"limit,omitempty"`
+	After    int64  `url:"after,omitempty"`
+	Before   int64  `url:"before,omitempty"`
+	Limit    int    `url:"limit,omitempty"`
 }
 
 type GetOrdersPendingResponse struct {
