@@ -16,6 +16,7 @@ const (
 
 	PosSideLong  = "long"
 	PosSideShort = "short"
+	PosSideNet   = "net"
 
 	OrdTypeMarket          = "market"
 	OrdTypeLimit           = "limit"
@@ -34,4 +35,7 @@ const (
 
 	MgnModeIsolated = "isolated"
 	MgnModeCross    = "cross"
+
+	TypeAdd    = "add"
+	TypeReduce = "reduce"
 )
