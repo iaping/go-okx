@@ -13,5 +13,5 @@ func main() {
 	if err := examples.Client.Do(req, resp); err != nil {
 		panic(err)
 	}
-	log.Println(req, resp.(*trade.GetOrdersPendingResponse))
+	log.Println(req, resp.(*trade.GetOrderResponse))
 }

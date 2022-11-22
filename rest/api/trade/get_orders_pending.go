@@ -9,7 +9,7 @@ func NewGetOrdersPending(param *GetOrdersPendingParam) (api.IRequest, api.IRespo
 		Path:   "/api/v5/trade/orders-pending",
 		Method: api.MethodGet,
 		Param:  param,
-	}, &GetOrdersPendingResponse{}
+	}, &GetOrderResponse{}
 }
 
 type GetOrdersPendingParam struct {
@@ -21,9 +21,4 @@ type GetOrdersPendingParam struct {
 	After    int64  `url:"after,omitempty"`
 	Before   int64  `url:"before,omitempty"`
 	Limit    int    `url:"limit,omitempty"`
-}
-
-type GetOrdersPendingResponse struct {
-	api.Response
-	Data []Order `json:"data"`
 }
