@@ -11,11 +11,11 @@ func main() {
 	param := []*trade.PostCancelOrderParam{
 		&trade.PostCancelOrderParam{
 			InstId: "OKB-USDT",
-			OrdId:  "123456789",
+			OrdId:  "515102281109434368",
 		},
 		&trade.PostCancelOrderParam{
 			InstId: "XRP-USDT",
-			OrdId:  "123456789",
+			OrdId:  "515102281109434369",
 		},
 	}
 	req, resp := trade.NewPostCancelBatchOrders(param)

@@ -10,7 +10,8 @@ import (
 func main() {
 	param := &trade.PostAmendOrderParam{
 		InstId: "OKB-USDT",
-		OrdId:  "123456789",
+		OrdId:  "515102546340442112",
+		NewSz:  "1.5",
 	}
 	req, resp := trade.NewPostAmendOrder(param)
 	if err := examples.Client.Do(req, resp); err != nil {

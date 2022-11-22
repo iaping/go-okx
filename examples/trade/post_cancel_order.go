@@ -9,8 +9,8 @@ import (
 
 func main() {
 	param := &trade.PostCancelOrderParam{
-		InstId: "OKB-USDT",
-		OrdId:  "123456789",
+		InstId: "XRP-USDT",
+		OrdId:  "515101542723186689",
 	}
 	req, resp := trade.NewPostCancelOrder(param)
 	if err := examples.Client.Do(req, resp); err != nil {
