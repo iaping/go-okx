@@ -38,4 +38,11 @@ const (
 
 	TypeAdd    = "add"
 	TypeReduce = "reduce"
+
+	OrdCategoryTwap               = "twap"
+	OrdCategoryAdl                = "adl"
+	OrdCategoryFullLiquidation    = "full_liquidation"
+	OrdCategoryPartialLiquidation = "partial_liquidation"
+	OrdCategoryDelivery           = "delivery"
+	OrdCategoryDdh                = "ddh"
 )
