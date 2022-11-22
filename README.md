@@ -11,7 +11,7 @@ go get github.com/iaping/go-okx
 ## Example
 all examples are in the folder examples
 
-## Example code
+## Rest api example code
 ```go
 package main
 
@@ -32,5 +32,30 @@ func main() {
 	log.Println(req, resp.(*account.GetBalanceResponse))
 }
 ```
+
+## Public websocket example code
+```go
+package main
+
+import (
+	"log"
+
+	"github.com/iaping/go-okx/ws/public"
+)
+
+func main() {
+	handler := func(c public.EventTickers) {
+		log.Println(c)
+	}
+	handlerError := func(err error) {
+		panic(err)
+	}
+	if err := public.SubscribeTickers("BTC-USDT", handler, handlerError, false); err != nil {
+		panic(err)
+	}
+	select {}
+}
+```
+
 ## 提示
 缺失的接口会慢慢完善。有部分接口只是调通了，没有真实数据测试（穷）。有问题欢迎Issues！！！
