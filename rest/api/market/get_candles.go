@@ -11,11 +11,9 @@ func NewGetCandles(param *GetCandlesParam) (api.IRequest, api.IResponse) {
 }
 
 type GetCandlesParam struct {
+	api.PagingParam
 	InstId string `url:"instId"`
 	Bar    string `url:"bar,omitempty"`
-	After  int64  `url:"after,omitempty"`
-	Before int64  `url:"before,omitempty"`
-	Limit  int    `url:"limit,omitempty"`
 }
 
 type GetCandlesResponse struct {

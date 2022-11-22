@@ -11,12 +11,10 @@ func NewGetBills(param *GetBillsParam) (api.IRequest, api.IResponse) {
 }
 
 type GetBillsParam struct {
+	api.PagingParam
 	Ccy     string `url:"ccy,omitempty"`
 	Type    string `url:"type,omitempty"`
 	SubAcct string `url:"subAcct,omitempty"`
-	After   int64  `url:"after,omitempty"`
-	Before  int64  `url:"before,omitempty"`
-	Limit   int    `url:"limit,omitempty"`
 }
 
 type GetBillsResponse struct {

@@ -11,6 +11,9 @@ import (
 func main() {
 	param := &trade.GetFillsParam{
 		InstType: api.InstTypeSPOT,
+		PagingParam: api.PagingParam{
+			Limit: 2,
+		},
 	}
 	req, resp := trade.NewGetFillsHistory(param)
 	if err := examples.Client.Do(req, resp); err != nil {

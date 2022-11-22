@@ -11,9 +11,7 @@ func NewGetHistory(param *GetHistoryParam) (api.IRequest, api.IResponse) {
 }
 
 type GetHistoryParam struct {
-	After  int64 `url:"after,omitempty"`
-	Before int64 `url:"before,omitempty"`
-	Limit  int   `url:"limit,omitempty"`
+	api.PagingParam
 }
 
 type GetHistoryResponse struct {

@@ -13,13 +13,11 @@ func NewGetFills(param *GetFillsParam) (api.IRequest, api.IResponse) {
 }
 
 type GetFillsParam struct {
+	api.PagingParam
 	InstType string `url:"instType,omitempty"`
 	Uly      string `url:"uly,omitempty"`
 	InstId   string `url:"instId,omitempty"`
 	OrdId    string `url:"ordId,omitempty"`
-	After    int64  `url:"after,omitempty"`
-	Before   int64  `url:"before,omitempty"`
-	Limit    int    `url:"limit,omitempty"`
 }
 
 type GetFillsResponse struct {

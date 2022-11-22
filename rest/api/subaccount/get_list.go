@@ -11,11 +11,9 @@ func NewGetList(param *GetListParam) (api.IRequest, api.IResponse) {
 }
 
 type GetListParam struct {
+	api.PagingParam
 	Enable  bool   `url:"enable,omitempty"`
 	SubAcct string `url:"subAcct,omitempty"`
-	After   int64  `url:"after,omitempty"`
-	Before  int64  `url:"before,omitempty"`
-	Limit   int    `url:"limit,omitempty"`
 }
 
 type GetListResponse struct {
