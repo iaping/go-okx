@@ -23,7 +23,8 @@ import (
 )
 
 func main() {
-	client := rest.New("", "your apikey", "your key", "your passphrase", false, nil)
+	auth := common.NewAuth("your apikey", "your key", "your passphrase", false)
+	client := rest.New("", auth, nil)
 	param := &account.GetBalanceParam{}
 	req, resp := account.NewGetBalance(param)
 	if err := client.Do(req, resp); err != nil {
