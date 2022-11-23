@@ -57,5 +57,35 @@ func main() {
 }
 ```
 
+## Private websocket example code
+```go
+package main
+
+import (
+	"log"
+
+	"github.com/iaping/go-okx/common"
+	"github.com/iaping/go-okx/ws"
+	"github.com/iaping/go-okx/ws/private"
+)
+
+func main() {
+	auth := common.NewAuth("your apikey", "your key", "your passphrase", false)
+	args := &ws.Args{
+		InstType: "SPOT",
+	}
+	handler := func(c private.EventOrders) {
+		log.Println(c)
+	}
+	handlerError := func(err error) {
+		panic(err)
+	}
+	if err := private.SubscribeOrders(args, auth, handler, handlerError); err != nil {
+		panic(err)
+	}
+	select {}
+}
+```
+
 ## 提示
 缺失的接口会慢慢完善。有部分接口只是调通了，没有真实数据测试（穷）。有问题欢迎Issues！！！

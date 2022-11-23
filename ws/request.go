@@ -3,6 +3,7 @@ package ws
 const (
 	OpSubscribe   = "subscribe"
 	OpUnsubscribe = "unsubscribe"
+	OpLogin       = "login"
 )
 
 type Request struct {
@@ -11,13 +12,18 @@ type Request struct {
 }
 
 // new request for subscribe
-func NewRequestSubscribe(args interface{}) Request {
+func NewRequestSubscribe(args interface{}) *Request {
 	return NewRequest(OpSubscribe, args)
 }
 
+// new request for login
+func NewRequestLogin(args interface{}) *Request {
+	return NewRequest(OpLogin, args)
+}
+
 // new request
-func NewRequest(op string, args interface{}) Request {
-	return Request{
+func NewRequest(op string, args interface{}) *Request {
+	return &Request{
 		Op:   op,
 		Args: []interface{}{args},
 	}

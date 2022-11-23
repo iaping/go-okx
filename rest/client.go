@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/google/go-querystring/query"
+	"github.com/iaping/go-okx/common"
 	"github.com/iaping/go-okx/rest/api"
 	"github.com/valyala/fasthttp"
 )
@@ -21,26 +22,24 @@ var (
 )
 
 type Client struct {
-	Host, Key, SecretKey, Passphrase string
-	Simulated                        bool
-	C                                *fasthttp.Client
+	Host string
+	Auth common.Auth
+	C    *fasthttp.Client
 }
 
 // new *Client
-func New(host, key, secretKey, passphrase string, simulated bool, c *fasthttp.Client) *Client {
+func New(host string, auth common.Auth, c *fasthttp.Client) *Client {
 	if host == "" {
 		host = "https://www.okx.com"
 	}
 	if c == nil {
 		c = DefaultFastHttpClient
 	}
+
 	return &Client{
-		Host:       host,
-		Key:        key,
-		SecretKey:  secretKey,
-		Passphrase: passphrase,
-		Simulated:  simulated,
-		C:          c,
+		Host: host,
+		Auth: auth,
+		C:    c,
 	}
 }
 
@@ -88,18 +87,19 @@ func (c *Client) newRequest(r api.IRequest) *fasthttp.Request {
 	headers := map[string]string{
 		fasthttp.HeaderContentType: "application/json;charset=utf-8",
 		fasthttp.HeaderAccept:      "application/json",
-		"OK-ACCESS-KEY":            c.Key,
-		"OK-ACCESS-PASSPHRASE":     c.Passphrase,
+		"OK-ACCESS-KEY":            c.Auth.ApiKey,
+		"OK-ACCESS-PASSPHRASE":     c.Auth.Passphrase,
 		"OK-ACCESS-SIGN":           sign.Build(),
 		"OK-ACCESS-TIMESTAMP":      sign.Timestamp,
 	}
-	if c.Simulated {
+	if c.Auth.Simulated {
 		headers["x-simulated-trading"] = "1"
 	}
 	for k, v := range headers {
 		req.Header.Set(k, v)
 	}
 	req.Header.SetMethod(sign.Method)
+
 	req.SetRequestURI(c.Host + sign.Path)
 	if sign.Body != "" {
 		req.SetBodyString(sign.Body)
@@ -109,7 +109,7 @@ func (c *Client) newRequest(r api.IRequest) *fasthttp.Request {
 }
 
 // new *Signature
-func (c *Client) newSignature(r api.IRequest) *Signature {
+func (c *Client) newSignature(r api.IRequest) *common.Signature {
 	var body []byte
 	path := r.GetPath()
 
@@ -119,10 +119,5 @@ func (c *Client) newSignature(r api.IRequest) *Signature {
 		path += "?" + values.Encode()
 	}
 
-	return &Signature{
-		Key:    c.SecretKey,
-		Method: r.GetMethod(),
-		Path:   path,
-		Body:   string(body),
-	}
+	return c.Auth.Signature(r.GetMethod(), path, string(body), false)
 }

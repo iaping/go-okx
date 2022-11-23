@@ -20,6 +20,6 @@ func NewPublic(simulated bool) *Public {
 
 // subscribe
 func (p *Public) Subscribe(args interface{}, handler ws.Handler, handlerError ws.HandlerError) error {
-	subscribe := ws.NewSubscribe(args, handler, handlerError)
-	return p.C.Subscribe(subscribe)
+	subscribe := ws.NewOperateSubscribe(args, handler, handlerError)
+	return p.C.Operate(subscribe, nil)
 }

@@ -26,6 +26,8 @@ var (
 	PingMessage = []byte("ping")
 )
 
+type OperateCallback func(*websocket.Conn) error
+
 type Client struct {
 	Endpoint string
 	Dialer   *websocket.Dialer
@@ -38,44 +40,56 @@ func NewClient(endpoint string) *Client {
 	}
 }
 
-// subscribe
-func (c *Client) Subscribe(subscribe *Subscribe) error {
+// operate
+func (c *Client) Operate(operate *Operate, callback OperateCallback) error {
 	conn, _, err := c.dial()
 	if err != nil {
 		return err
 	}
-	if err := c.messageSubscribe(conn, subscribe); err != nil {
+
+	if callback != nil {
+		if err := callback(conn); err != nil {
+			return err
+		}
+	}
+
+	if err := c.MessageOperate(conn, operate); err != nil {
 		return err
 	}
 
-	ticker := time.NewTicker(PingTimeout)
-	go c.keepAlive(conn, ticker)
-	go c.messageLoop(conn, subscribe)
+	if operate.Handler != nil {
+		ticker := time.NewTicker(PingTimeout)
+		go c.keepAlive(conn, ticker)
+		go c.messageLoop(conn, operate)
+	}
 
 	return nil
 }
 
-// message subscribe
-func (c *Client) messageSubscribe(conn *websocket.Conn, subscribe *Subscribe) error {
-	if err := conn.WriteJSON(subscribe.Request); err != nil {
+// message operate
+func (c *Client) MessageOperate(conn *websocket.Conn, operate *Operate) error {
+	if operate.Request == nil {
+		return nil
+	}
+	if err := conn.WriteJSON(operate.Request); err != nil {
 		return err
 	}
-	if err := conn.ReadJSON(&subscribe.Response); err != nil {
+	if err := conn.ReadJSON(&operate.Response); err != nil {
 		return err
 	}
-	return subscribe.Response.Error()
+	return operate.Response.Error()
 }
 
 // loop websocket message
-func (c *Client) messageLoop(conn *websocket.Conn, subscribe *Subscribe) {
+func (c *Client) messageLoop(conn *websocket.Conn, operate *Operate) {
 	defer conn.Close()
 	for {
 		_, message, err := conn.ReadMessage()
 		if err != nil {
-			subscribe.HandlerError(err)
+			operate.HandlerError(err)
 			return
 		}
-		subscribe.Handler(message)
+		operate.Handler(message)
 	}
 }
 
