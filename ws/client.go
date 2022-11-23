@@ -2,6 +2,7 @@ package ws
 
 import (
 	"net/http"
+	"time"
 
 	"github.com/gorilla/websocket"
 )
@@ -11,6 +12,9 @@ const (
 	EndpointPrivate          = "wss://ws.okx.com:8443/ws/v5/private"
 	EndpointPublicSimulated  = "wss://wspap.okx.com:8443/ws/v5/public?brokerId=9999"
 	EndpointPrivateSimulated = "wss://wspap.okx.com:8443/ws/v5/private?brokerId=9999"
+
+	PingTimeout  = 20 * time.Second
+	PingDeadline = 10 * time.Second
 )
 
 var (
@@ -18,6 +22,8 @@ var (
 	DefaultClientPrivate          = NewClient(EndpointPrivate)
 	DefaultClientPublicSimulated  = NewClient(EndpointPublicSimulated)
 	DefaultClientPrivateSimulated = NewClient(EndpointPrivateSimulated)
+
+	PingMessage = []byte("ping")
 )
 
 type Client struct {
@@ -42,6 +48,8 @@ func (c *Client) Subscribe(subscribe *Subscribe) error {
 		return err
 	}
 
+	ticker := time.NewTicker(PingTimeout)
+	go c.keepAlive(conn, ticker)
 	go c.messageLoop(conn, subscribe)
 
 	return nil
@@ -68,6 +76,18 @@ func (c *Client) messageLoop(conn *websocket.Conn, subscribe *Subscribe) {
 			return
 		}
 		subscribe.Handler(message)
+	}
+}
+
+// keep websocket alive
+func (c *Client) keepAlive(conn *websocket.Conn, ticker *time.Ticker) {
+	defer ticker.Stop()
+	for {
+		<-ticker.C
+		deadline := time.Now().Add(PingDeadline)
+		if err := conn.WriteControl(websocket.PingMessage, PingMessage, deadline); err != nil {
+			return
+		}
 	}
 }
 
