@@ -87,6 +87,7 @@ func (c *Client) newRequest(r api.IRequest) *fasthttp.Request {
 	headers := map[string]string{
 		fasthttp.HeaderContentType: "application/json;charset=utf-8",
 		fasthttp.HeaderAccept:      "application/json",
+		"OK-ACCESS-PROJECT":        c.Auth.ObjectID,
 		"OK-ACCESS-KEY":            c.Auth.ApiKey,
 		"OK-ACCESS-PASSPHRASE":     c.Auth.Passphrase,
 		"OK-ACCESS-SIGN":           sign.Build(),
