@@ -84,28 +84,28 @@ func (c *Client) newRequest(r api.IRequest) *fasthttp.Request {
 	req := fasthttp.AcquireRequest()
 	sign := c.newSignature(r)
 
-	headers := map[string]string{
-		fasthttp.HeaderContentType: "application/json;charset=utf-8",
-		fasthttp.HeaderAccept:      "application/json",
-		"OK-ACCESS-PROJECT":        c.Auth.ObjectID,
-		"OK-ACCESS-KEY":            c.Auth.ApiKey,
-		"OK-ACCESS-PASSPHRASE":     c.Auth.Passphrase,
-		"OK-ACCESS-SIGN":           sign.Build(),
-		"OK-ACCESS-TIMESTAMP":      sign.Timestamp,
-	}
-	if c.Auth.Simulated {
-		headers["x-simulated-trading"] = "1"
-	}
-	for k, v := range headers {
-		req.Header.Set(k, v)
-	}
-	req.Header.SetMethod(sign.Method)
+	req.Header.Set(fasthttp.HeaderContentType, "application/json;charset=utf-8")
+	req.Header.Set(fasthttp.HeaderAccept, "application/json")
 
+	if c.Auth.ApiKey != "" && c.Auth.SecretKey != "" && c.Auth.Passphrase != "" {
+		if c.Auth.ObjectID != "" {
+			req.Header.Set("OK-ACCESS-PROJECT", c.Auth.ObjectID)
+		}
+		req.Header.Set("OK-ACCESS-KEY", c.Auth.ApiKey)
+		req.Header.Set("OK-ACCESS-PASSPHRASE", c.Auth.Passphrase)
+		req.Header.Set("OK-ACCESS-SIGN", sign.Build())
+		req.Header.Set("OK-ACCESS-TIMESTAMP", sign.Timestamp)
+	}
+
+	if c.Auth.Simulated {
+		req.Header.Set("x-simulated-trading", "1")
+	}
+
+	req.Header.SetMethod(sign.Method)
 	req.SetRequestURI(c.Host + sign.Path)
 	if sign.Body != "" {
 		req.SetBodyString(sign.Body)
 	}
-
 	return req
 }
 
